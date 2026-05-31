@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aditya Singh | Web Developer & Student</title>
 
-    <!-- EmailJS SDK Integration (Version 4) -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
     <style>
         /* Base Layout Themes (Light Mode Default) */
         :root {
@@ -97,7 +94,21 @@
             padding: 0.8rem 2rem;
         }
 
-        /* Hamburger Menu Button */
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        /* CIRCULAR LOGO INTEGRATION */
+        .header-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
         .hamburger-menu-btn {
             display: flex;
             align-items: center;
@@ -153,7 +164,7 @@
             color: var(--accent);
         }
 
-        /* LEFT SIDEBAR SLIDING DRAWER */
+        /* SIDEBAR DRAWER PANEL */
         .drawer-overlay {
             position: fixed;
             top: 0;
@@ -244,6 +255,7 @@
             border: 1px solid var(--border-color);
         }
 
+        /* CLEANED THEME BUTTON */
         .drawer-toggle-btn {
             background: var(--accent);
             border: none;
@@ -275,11 +287,17 @@
             color: #ffffff;
         }
 
-        /* General Sections Layout */
+        /* SECTION PADDING CONTROLS */
         section {
-            padding: 8rem 2rem 5rem 2rem;
+            padding: 5rem 2rem 5rem 2rem;
             max-width: 1100px;
             margin: 0 auto;
+        }
+
+        /* TIGHTENED UP AND DOWN SPACING FOR SERVICES & GUARANTEES */
+        .tight-section {
+            padding-top: 2rem !important;
+            padding-bottom: 2rem !important;
         }
 
         .alt-section {
@@ -309,10 +327,11 @@
         }
 
         #hero {
-            min-height: 80vh;
+            min-height: 75vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding-top: 8rem;
         }
 
         .hero-subtitle {
@@ -394,6 +413,64 @@
             margin-bottom: 0.5rem;
         }
 
+        /* ECO-FRIENDLY PROJECTS GRID */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-image-placeholder {
+            background-color: var(--section-alt-bg);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+            font-style: italic;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-badge {
+            display: inline-block;
+            background-color: var(--border-color);
+            color: var(--text-main);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+            align-self: flex-start;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
         .floating-request-container {
             position: fixed;
             bottom: 2rem;
@@ -413,7 +490,7 @@
             cursor: pointer;
         }
 
-        /* MODAL POPUPS (HIRE ME & SUPPORT) */
+        /* POPUP MODALS */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -484,13 +561,26 @@
             border-color: var(--accent);
         }
 
+        /* FOOTER THANK YOU NOTE STYLES */
         footer {
             text-align: center;
-            padding: 2.5rem;
+            padding: 3rem 2rem;
             color: var(--text-muted);
             border-top: 1px solid var(--border-color);
             background-color: var(--section-alt-bg);
-            margin-bottom: 0;
+        }
+
+        .footer-thankyou {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            opacity: 0.85;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
@@ -502,7 +592,7 @@
 </head>
 <body>
 
-    <!-- Header Navigation Section -->
+    <!-- Header Area -->
     <header>
         <div class="nav-container">
             <button class="hamburger-menu-btn" id="openDrawerBtn">
@@ -514,19 +604,24 @@
                 <span>Menu</span>
             </button>
 
-            <span class="logo-text">Aditya Devs.</span>
+            <!-- CIRCULAR LOGO IMAGE CONFIGURED HERE -->
+            <div class="brand-wrapper">
+                <img src="my-logo.jpg" alt="Logo" class="header-logo" onerror="this.style.display='none';">
+                <span class="logo-text">Aditya Devs.</span>
+            </div>
             
             <nav>
                 <ul>
                     <li class="nav-links-desktop"><a href="#hero">Home</a></li>
                     <li class="nav-links-desktop"><a href="#services">Services</a></li>
                     <li class="nav-links-desktop"><a href="#rules">Rules</a></li>
+                    <li class="nav-links-desktop"><a href="#projects">Projects</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- SIDEBAR CONTROL CENTER PANEL -->
+    <!-- SIDEBAR DRAWER MENU -->
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="side-drawer" id="sideDrawer">
         <div class="drawer-header">
@@ -534,25 +629,21 @@
             <button class="close-drawer-btn" id="closeDrawerBtn">✕</button>
         </div>
 
-        <!-- Theme Mode Option Row -->
         <div class="drawer-menu-item">
             <label>Color Appearance</label>
             <div class="drawer-mode-row">
                 <span style="font-weight: 500;">Dark Theme</span>
-                <button class="drawer-toggle-btn" id="themeToggle">🌓 Toggle</button>
+                <button class="drawer-toggle-btn" id="themeToggle">🌓 Theme</button>
             </div>
         </div>
 
-        <!-- Language option is completely removed from here -->
-
-        <!-- Support Option in Menu -->
         <div class="drawer-menu-item" style="margin-top: auto; padding-top: 1rem;">
             <label>Need Help?</label>
             <button class="drawer-support-btn" id="drawerSupportBtn">💬 Contact Support</button>
         </div>
     </div>
 
-    <!-- Hero Identity Section -->
+    <!-- Hero Section -->
     <section id="hero">
         <p class="hero-subtitle">Hi, my name is</p>
         <h1 class="hero-title">Aditya Singh.</h1>
@@ -562,9 +653,9 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section ("What I Do") -->
     <div class="alt-section" id="services">
-        <section class="section-inner">
+        <section class="section-inner tight-section">
             <h2 class="section-title">What I Do</h2>
             <div class="services-grid">
                 <div class="service-card">
@@ -583,8 +674,8 @@
         </section>
     </div>
 
-    <!-- Rules & Structural Guarantees Section -->
-    <section id="rules">
+    <!-- Rules & Guarantees Section -->
+    <section id="rules" class="tight-section">
         <h2 class="section-title">Rules & Client Guarantees</h2>
         <div class="rules-grid">
             <div class="rule-card">
@@ -606,12 +697,60 @@
         </div>
     </section>
 
-    <!-- FLOATING ACTION SYSTEM BUTTON -->
+    <!-- "SOME OF MY PROJECTS" ECO-FRIENDLY SECTION -->
+    <div class="alt-section" id="projects">
+        <section class="section-inner tight-section">
+            <h2 class="section-title">Some of My Projects</h2>
+            <div class="projects-grid">
+                
+                <!-- PROJECT CARD 1 -->
+                <!-- IN THE FUTURE: You can wrap this div in an <a href="YOUR_WEBSITE_LINK"> to make it clickable -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <!-- IN THE FUTURE: Replace this text block with an <img src="image.jpg"> tag -->
+                        Project Display Area
+                    </div>
+                    <div class="project-info">
+                        <span class="project-badge">Coming Soon</span>
+                        <h3>Awesome Web Project</h3>
+                        <p>A completely customized website design layout that will be deployed right here in the future.</p>
+                    </div>
+                </div>
+
+                <!-- PROJECT CARD 2 -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        Project Display Area
+                    </div>
+                    <div class="project-info">
+                        <span class="project-badge">Coming Soon</span>
+                        <h3>Responsive Platform</h3>
+                        <p>A beautiful application built to display flawlessly on phones, computing tablets, and screens.</p>
+                    </div>
+                </div>
+
+                <!-- PROJECT CARD 3 -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        Project Display Area
+                    </div>
+                    <div class="project-info">
+                        <span class="project-badge">Coming Soon</span>
+                        <h3>E-Commerce Layout</h3>
+                        <p>An entry-level clean portfolio or store prototype showcasing smooth front-end design structures.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- FLOATING ACTION BUTTON -->
     <div class="floating-request-container">
         <button class="btn-request open-request-btn">⚡ Hire Me</button>
     </div>
 
-    <!-- HIRE ME POPUP INTERFACE FORM -->
+    <!-- HIRE ME FORMSPREE MODAL -->
     <div class="modal-overlay" id="requestModal">
         <div class="modal-box">
             <button class="close-modal" id="closeModalBtn">✕</button>
@@ -619,19 +758,165 @@
             
             <form action="https://formspree.io/f/meedqkaa" method="POST" id="submissionForm">
                 <div class="form-group">
-                    <label for="username">Your Name</label>
-                    <input type="text" name="Client Name" id="username" placeholder="Enter full name" required>
+                    <label>Your Name</label>
+                    <input type="text" name="Client Name" placeholder="Enter full name" required>
                 </div>
                 <div class="form-group">
-                    <label for="userphone">Phone Number</label>
-                    <input type="tel" name="Phone Number" id="userphone" placeholder="Enter phone contact" required>
+                    <label>Phone Number</label>
+                    <input type="tel" name="Phone Number" placeholder="Enter phone contact" required>
                 </div>
                 <div class="form-group">
-                    <label for="useremail">Email Address</label>
-                    <input type="email" name="Email Address" id="useremail" placeholder="Enter email" required>
+                    <label>Gmail Address</label>
+                    <input type="email" name="_replyto" id="usergmail" placeholder="example@gmail.com" required>
                 </div>
                 <div class="form-group">
-                    <label for="projectdesc">Project Details</label>
-                    <textarea name="Project Description" id="projectdesc" rows="4" placeholder="Briefly describe what you need..." required></textarea>
+                    <label>Project Specification Details</label>
+                    <textarea name="Project Description" rows="4" placeholder="Describe the type of website layout you need..." required></textarea>
                 </div>
-                <button type="submit" class="btn" style="width: 100%; margin-top: 0.5rem;">Submit Request</but
+                <div class="form-group">
+                    <label>Proposed Budget Plan</label>
+                    <input type="text" name="Proposed Budget" placeholder="e.g., 2000 INR" required>
+                </div>
+                <input type="hidden" name="_subject" value="New Project Request Form Submission!">
+                <button type="submit" class="btn" style="width: 100%; padding: 0.8rem; margin-top: 0.5rem;">Submit Proposal Form</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SUPPORT FORMSPREE MODAL -->
+    <div class="modal-overlay" id="supportModal">
+        <div class="modal-box">
+            <button class="close-modal" id="closeSupportModalBtn">✕</button>
+            <h3 style="margin-bottom: 1.5rem; color: var(--accent); font-size: 1.4rem;">💬 Contact Support</h3>
+            
+            <form action="https://formspree.io/f/meedqkaa" method="POST" id="supportForm">
+                <div class="form-group">
+                    <label>Your Gmail Address</label>
+                    <input type="email" name="_replyto" id="supportEmail" placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>What is your question or problem?</label>
+                    <textarea name="Support Message Content" rows="5" placeholder="Write your message here..." required></textarea>
+                </div>
+                <input type="hidden" name="_subject" value="New Customer Support Message Submission!">
+                <button type="submit" class="btn" style="width: 100%; padding: 0.8rem; margin-top: 0.5rem;">Submit Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Area -->
+    <footer>
+        <p class="footer-thankyou">Thank you for visiting my website.</p>
+        <p class="footer-copyright">&copy; 2026 Aditya Singh. Learning & Growing daily.</p>
+    </footer>
+
+    <!-- JavaScript Navigation & Engine Controls -->
+    <script>
+        (function() {
+            const bodyElement = document.body;
+            const requestModal = document.getElementById('requestModal');
+            const supportModal = document.getElementById('supportModal');
+            const sideDrawer = document.getElementById('sideDrawer');
+            const drawerOverlay = document.getElementById('drawerOverlay');
+            
+            const openRequestBtns = document.querySelectorAll('.open-request-btn');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const closeSupportModalBtn = document.getElementById('closeSupportModalBtn');
+            
+            const openDrawerBtn = document.getElementById('openDrawerBtn');
+            const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+            const drawerSupportBtn = document.getElementById('drawerSupportBtn');
+            const themeToggle = document.getElementById('themeToggle');
+
+            function openDrawer() {
+                sideDrawer.classList.add('active');
+                drawerOverlay.classList.add('active');
+                bodyElement.style.overflow = 'hidden';
+            }
+
+            function closeDrawer() {
+                sideDrawer.classList.remove('active');
+                drawerOverlay.classList.remove('active');
+                if(!requestModal.classList.contains('active') && !supportModal.classList.contains('active')) {
+                    bodyElement.style.overflow = '';
+                }
+            }
+
+            if(openDrawerBtn) openDrawerBtn.addEventListener('click', openDrawer);
+            if(closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+            if(drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+            if(themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    bodyElement.classList.toggle('dark-theme');
+                });
+            }
+
+            function openPopup(modal) {
+                modal.classList.add('active');
+                bodyElement.classList.add('modal-open');
+            }
+
+            function closePopups() {
+                requestModal.classList.remove('active');
+                supportModal.classList.remove('active');
+                bodyElement.classList.remove('modal-open');
+            }
+
+            openRequestBtns.forEach(btn => btn.addEventListener('click', () => {
+                closeDrawer();
+                openPopup(requestModal);
+            }));
+            
+            if(closeModalBtn) closeModalBtn.addEventListener('click', closePopups);
+
+            if(drawerSupportBtn) {
+                drawerSupportBtn.addEventListener('click', () => {
+                    closeDrawer();
+                    openPopup(supportModal);
+                });
+            }
+            if(closeSupportModalBtn) closeSupportModalBtn.addEventListener('click', closePopups);
+            
+            [requestModal, supportModal].forEach(modal => {
+                if(modal) {
+                    modal.addEventListener('click', (e) => {
+                        if(e.target === modal) { closePopups(); }
+                    });
+                }
+            });
+
+            /* GMAIL STRUCTURE ENDS-WITH CHECKER */
+            function isInvalidGmail(emailValue) {
+                return !emailValue.toLowerCase().endsWith('@gmail.com');
+            }
+
+            // Client Request Verification
+            const submissionForm = document.getElementById('submissionForm');
+            if(submissionForm) {
+                submissionForm.addEventListener('submit', function(e) {
+                    const clientEmail = document.getElementById('usergmail').value.trim();
+                    if (isInvalidGmail(clientEmail)) {
+                        e.preventDefault();
+                        alert('Please submit a verified, working Gmail address format (@gmail.com).');
+                        document.getElementById('usergmail').focus();
+                    }
+                });
+            }
+
+            // Support Request Verification
+            const supportForm = document.getElementById('supportForm');
+            if(supportForm) {
+                supportForm.addEventListener('submit', function(e) {
+                    const supportEmail = document.getElementById('supportEmail').value.trim();
+                    if (isInvalidGmail(supportEmail)) {
+                        e.preventDefault();
+                        alert('Please submit a verified, working Gmail address format (@gmail.com).');
+                        document.getElementById('supportEmail').focus();
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
