@@ -23,24 +23,7 @@
             --overlay-bg: rgba(0, 0, 0, 0.4);
         }
 
-        /* AUTOMATIC SYSTEM DARK MODE DETECTION */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #0f172a;
-                --section-alt-bg: #1e1b4b;
-                --card-bg: #1e293b;
-                --text-main: #f8fafc;
-                --text-muted: #94a3b8;
-                --border-color: #4338ca;
-                --header-bg: rgba(15, 23, 42, 0.9);
-                --modal-bg: #1e293b;
-                --input-border: #475569;
-                --drawer-bg: #1e293b;
-                --overlay-bg: rgba(0, 0, 0, 0.6);
-            }
-        }
-
-        /* MANUAL DARK MODE OVERRIDE */
+        /* FORCE DARK THEME CLASSES FOR COMPACT OVERRIDE CONTROLS */
         body.dark-theme {
             --bg-color: #0f172a;
             --section-alt-bg: #1e1b4b;
@@ -55,13 +38,47 @@
             --overlay-bg: rgba(0, 0, 0, 0.6);
         }
 
+        /* SYSTEM-LEVEL AUTOMATIC FALLBACK */
+        @media (prefers-color-scheme: dark) {
+            body:not(.light-theme) {
+                --bg-color: #0f172a;
+                --section-alt-bg: #1e1b4b;
+                --card-bg: #1e293b;
+                --text-main: #f8fafc;
+                --text-muted: #94a3b8;
+                --border-color: #4338ca;
+                --header-bg: rgba(15, 23, 42, 0.9);
+                --modal-bg: #1e293b;
+                --input-border: #475569;
+                --drawer-bg: #1e293b;
+                --overlay-bg: rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        /* Manual Light Override forced by javascript button if system dark mode is on */
+        body.light-theme {
+            --bg-color: #ffffff;
+            --section-alt-bg: #fff7ed;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --accent: #f97316;
+            --accent-hover: #ea580c;
+            --border-color: #fed7aa;
+            --header-bg: rgba(255, 255, 255, 0.9);
+            --modal-bg: #ffffff;
+            --input-border: #cbd5e1;
+            --drawer-bg: #ffffff;
+            --overlay-bg: rgba(0, 0, 0, 0.4);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
-            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
 
         body {
@@ -255,7 +272,6 @@
             border: 1px solid var(--border-color);
         }
 
-        /* CLEANED THEME BUTTON */
         .drawer-toggle-btn {
             background: var(--accent);
             border: none;
@@ -592,7 +608,6 @@
 </head>
 <body>
 
-    <!-- Header Area -->
     <header>
         <div class="nav-container">
             <button class="hamburger-menu-btn" id="openDrawerBtn">
@@ -604,7 +619,6 @@
                 <span>Menu</span>
             </button>
 
-            <!-- CIRCULAR LOGO IMAGE CONFIGURED HERE -->
             <div class="brand-wrapper">
                 <img src="my-logo.jpg" alt="Logo" class="header-logo" onerror="this.style.display='none';">
                 <span class="logo-text">Aditya Devs.</span>
@@ -621,7 +635,6 @@
         </div>
     </header>
 
-    <!-- SIDEBAR DRAWER MENU -->
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="side-drawer" id="sideDrawer">
         <div class="drawer-header">
@@ -643,7 +656,6 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
     <section id="hero">
         <p class="hero-subtitle">Hi, my name is</p>
         <h1 class="hero-title">Aditya Singh.</h1>
@@ -653,7 +665,6 @@
         </div>
     </section>
 
-    <!-- Services Section ("What I Do") -->
     <div class="alt-section" id="services">
         <section class="section-inner tight-section">
             <h2 class="section-title">What I Do</h2>
@@ -674,7 +685,6 @@
         </section>
     </div>
 
-    <!-- Rules & Guarantees Section -->
     <section id="rules" class="tight-section">
         <h2 class="section-title">Rules & Client Guarantees</h2>
         <div class="rules-grid">
@@ -697,17 +707,13 @@
         </div>
     </section>
 
-    <!-- "SOME OF MY PROJECTS" ECO-FRIENDLY SECTION -->
     <div class="alt-section" id="projects">
         <section class="section-inner tight-section">
             <h2 class="section-title">Some of My Projects</h2>
             <div class="projects-grid">
                 
-                <!-- PROJECT CARD 1 -->
-                <!-- IN THE FUTURE: You can wrap this div in an <a href="YOUR_WEBSITE_LINK"> to make it clickable -->
                 <div class="project-card">
                     <div class="project-image-placeholder">
-                        <!-- IN THE FUTURE: Replace this text block with an <img src="image.jpg"> tag -->
                         Project Display Area
                     </div>
                     <div class="project-info">
@@ -717,7 +723,6 @@
                     </div>
                 </div>
 
-                <!-- PROJECT CARD 2 -->
                 <div class="project-card">
                     <div class="project-image-placeholder">
                         Project Display Area
@@ -729,7 +734,6 @@
                     </div>
                 </div>
 
-                <!-- PROJECT CARD 3 -->
                 <div class="project-card">
                     <div class="project-image-placeholder">
                         Project Display Area
@@ -745,12 +749,10 @@
         </section>
     </div>
 
-    <!-- FLOATING ACTION BUTTON -->
     <div class="floating-request-container">
         <button class="btn-request open-request-btn">⚡ Hire Me</button>
     </div>
 
-    <!-- HIRE ME FORMSPREE MODAL -->
     <div class="modal-overlay" id="requestModal">
         <div class="modal-box">
             <button class="close-modal" id="closeModalBtn">✕</button>
@@ -783,7 +785,6 @@
         </div>
     </div>
 
-    <!-- SUPPORT FORMSPREE MODAL -->
     <div class="modal-overlay" id="supportModal">
         <div class="modal-box">
             <button class="close-modal" id="closeSupportModalBtn">✕</button>
@@ -804,13 +805,11 @@
         </div>
     </div>
 
-    <!-- Footer Area -->
     <footer>
         <p class="footer-thankyou">Thank you for visiting my website.</p>
         <p class="footer-copyright">&copy; 2026 Aditya Singh. Learning & Growing daily.</p>
     </footer>
 
-    <!-- JavaScript Navigation & Engine Controls -->
     <script>
         (function() {
             const bodyElement = document.body;
@@ -828,12 +827,14 @@
             const drawerSupportBtn = document.getElementById('drawerSupportBtn');
             const themeToggle = document.getElementById('themeToggle');
 
+            // Handle Menu Drawer opening
             function openDrawer() {
                 sideDrawer.classList.add('active');
                 drawerOverlay.classList.add('active');
                 bodyElement.style.overflow = 'hidden';
             }
 
+            // Handle Menu Drawer closing
             function closeDrawer() {
                 sideDrawer.classList.remove('active');
                 drawerOverlay.classList.remove('active');
@@ -846,9 +847,32 @@
             if(closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
             if(drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 
+            // FIX: RELIABLE EXPLICIT THEME SWITCHER LOGIC
             if(themeToggle) {
                 themeToggle.addEventListener('click', () => {
-                    bodyElement.classList.toggle('dark-theme');
+                    // Check if current view is matching standard dark mode settings
+                    const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    
+                    if (bodyElement.classList.contains('dark-theme')) {
+                        // Switch back to light explicitly
+                        bodyElement.classList.remove('dark-theme');
+                        bodyElement.classList.add('light-theme');
+                        themeToggle.textContent = "🌓 Theme";
+                    } else if (bodyElement.classList.contains('light-theme')) {
+                        // Switch back to dark explicitly
+                        bodyElement.classList.remove('light-theme');
+                        bodyElement.classList.add('dark-theme');
+                        themeToggle.textContent = "☀️ Light";
+                    } else {
+                        // Initial toggle state behavior matching system setups
+                        if (isSystemDark) {
+                            bodyElement.classList.add('light-theme');
+                            themeToggle.textContent = "🌓 Theme";
+                        } else {
+                            bodyElement.classList.add('dark-theme');
+                            themeToggle.textContent = "☀️ Light";
+                        }
+                    }
                 });
             }
 
@@ -886,12 +910,12 @@
                 }
             });
 
-            /* GMAIL STRUCTURE ENDS-WITH CHECKER */
+            /* GMAIL ENDS WITH VALIDATION FORMAT */
             function isInvalidGmail(emailValue) {
                 return !emailValue.toLowerCase().endsWith('@gmail.com');
             }
 
-            // Client Request Verification
+            // Client Form Verification
             const submissionForm = document.getElementById('submissionForm');
             if(submissionForm) {
                 submissionForm.addEventListener('submit', function(e) {
@@ -904,7 +928,7 @@
                 });
             }
 
-            // Support Request Verification
+            // Support Form Verification
             const supportForm = document.getElementById('supportForm');
             if(supportForm) {
                 supportForm.addEventListener('submit', function(e) {
